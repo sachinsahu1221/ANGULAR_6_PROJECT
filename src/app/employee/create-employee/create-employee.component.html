@@ -1,0 +1,164 @@
+<form
+  class="container"
+  #employeeForm="ngForm"
+  (ngSubmit)="saveFormData(employeeForm)"
+>
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">Create New Employee</h3>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="fullName"
+          name="fullName"
+          placeholder="Enter name"
+          [(ngModel)]="fullName"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="Enter email"
+          [(ngModel)]="email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          type="number"
+          class="form-control"
+          id="phone"
+          name="phone"
+          placeholder="Enter phone"
+          [(ngModel)]="phone"
+        />
+      </div>
+      <div class="form-group">
+        <label for="gender">Contact Preferences</label>
+        <div class="form-control">
+          <label class="form-check form-check-inline">
+            <input
+              type="radio"
+              id="preferencesPhone"
+              name="preferencesPhone"
+              value="prefPhone"
+              [(ngModel)]="preferencesPhone"
+            />
+            &nbsp;Phone</label
+          >
+          <label class="form-check form-check-inline">
+            <input
+              type="radio"
+              id="preferencesEmail"
+              name="preferencesEmail"
+              value="prefEmail"
+              [(ngModel)]="preferencesEmail"
+            />
+            &nbsp;Email</label
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <div class="form-control">
+          <label class="form-check form-check-inline">
+            <input
+              type="radio"
+              id="genderm"
+              name="genderm"
+              value="male"
+              [(ngModel)]="gender"
+              checked
+            />
+            &nbsp;Male</label
+          >
+          <label class="form-check form-check-inline">
+            <input
+              type="radio"
+              id="genderf"
+              name="genderf"
+              value="female"
+              [(ngModel)]="gender"
+              disabled
+            />
+            &nbsp;Female</label
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-control">
+          <label class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              name="isActive"
+              [(ngModel)]="isActive"
+              disabled
+            />
+            &nbsp;Is Active</label
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="gender">Departments</label>
+        <select
+          id="department"
+          name="department"
+          [(ngModel)]="department"
+          class="form-control"
+        >
+          <option [value]="dept.id" *ngFor="let dept of departments">
+            {{ dept.name }}
+          </option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="dob">Date of birth</label>
+          <input
+            type="text"
+            bsDatepicker
+            [bsConfig]="bsDatepickerConfig"
+            class="form-control"
+            id="dob"
+            name="dob"
+            [(ngModel)]="dob"
+            placement="right"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Photo Path</label>
+        <input
+          type="text"
+          class="form-control"
+          id="photoPath"
+          name="photoPath"
+          [(ngModel)]="photoPath"
+        />
+      </div>
+      <button class="btn btn-info" (click)="imgPreview()">
+        {{ showPreview ? "Hide" : "Show" }} Preview
+      </button>
+      <div class="form-group" *ngIf="showPreview">
+        <br />
+        <img [src]="photoPath" width="200" height="200" />
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </div>
+</form>
+<div class="container">
+  <div class="jumbotron">
+    {{ employeeForm.value | json }}
+  </div>
+</div>
